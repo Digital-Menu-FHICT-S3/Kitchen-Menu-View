@@ -1,0 +1,77 @@
+.productDetails {
+
+    background-color: white;
+    padding: 10px;
+}
+
+.ingredientDetails {
+    background-color: white;
+    padding: 10px;
+}
+
+.divButtons {
+    background-color: white;
+}
+
+#test{
+
+
+
+}
+#aantalPcs{
+    float: right;
+}
+
+.containerIngredients{
+    background-color: white;
+    width: 100%;
+    overflow: auto;
+
+}
+
+#div1 {
+    float: left;
+    width: 70%;
+}
+
+#div2 {
+    float: left;
+    width: 10%;
+    text-align: center;
+}
+
+.divContainerIngredients {
+    background-color: white;
+    padding: 10px;
+    display:inline-flex;
+}
+
+.addIngredients{
+    background-color: white;
+    width: 100%;
+    overflow: auto;
+}
+
+.divButtons {
+    background-color: white;
+    float: right;
+    position: static;
+    margin-top: 200px;
+}
+
+.container{
+    overflow: auto;
+}
+
+.extraInputAdd {
+    margin: 10px;
+}
+
+.deleteBtn {
+    float: left;
+    margin: 0 0 0 5px;
+}
+
+#dropdown-basic-button {
+    
+}
