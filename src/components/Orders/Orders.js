@@ -1,0 +1,63 @@
+import React, { useState } from "react";
+import { CardDeck, Container, Row } from "react-bootstrap";
+import OrderItem from "./OrderItem";
+
+const Orders = () => {
+  const [order, setOrders] = useState([
+    {
+      id: 1,
+      name: "Pasta",
+      time: 1,
+      image:
+        "https://media.discordapp.net/attachments/826071766807216128/826072364059852800/Z.png",
+    },
+    {
+      id: 2,
+      name: "Vlees",
+      time: 2,
+      image:
+        "https://media.discordapp.net/attachments/826071766807216128/826071810126381116/9k.png",
+    },
+    {
+      id: 3,
+      name: "Vis",
+      time: 3,
+      image:
+        "https://media.discordapp.net/attachments/826071766807216128/826072466295619604/9k.png",
+    },
+    {
+      id: 4,
+      name: "Soep",
+      time: 4,
+      image:
+        "https://media.discordapp.net/attachments/826071766807216128/826072533803204628/Z.png",
+    },
+    {
+      id: 4,
+      name: "Soep",
+      time: 4,
+      image:
+        "https://media.discordapp.net/attachments/826071766807216128/826072533803204628/Z.png",
+    },
+  ]);
+
+  return (
+    <div>
+      <Container>
+        <Row>
+          <CardDeck>
+            {order.map((orders) => (
+              <OrderItem
+                title={orders.name}
+                image={orders.image}
+                orderTime={orders.time}
+              />
+            ))}
+          </CardDeck>
+        </Row>
+      </Container>
+    </div>
+  );
+};
+
+export default Orders;
