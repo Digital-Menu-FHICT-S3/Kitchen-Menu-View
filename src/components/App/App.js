@@ -83,7 +83,7 @@ function App() {
               <Orders />
             </Layout>
           </Route>
-          <Route exact path="/finishedorders">
+          <Route exact path="/orders/finished">
             <Layout title="Finished Orders">
               <FinishedOrders />
             </Layout>
