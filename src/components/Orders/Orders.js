@@ -10,6 +10,7 @@ const Orders = () => {
       time: 1,
       image:
         "https://media.discordapp.net/attachments/826071766807216128/826072364059852800/Z.png",
+      status: "InProgress",
     },
     {
       id: 2,
@@ -17,6 +18,7 @@ const Orders = () => {
       time: 2,
       image:
         "https://media.discordapp.net/attachments/826071766807216128/826071810126381116/9k.png",
+      status: "InProgress",
     },
     {
       id: 3,
@@ -24,6 +26,7 @@ const Orders = () => {
       time: 3,
       image:
         "https://media.discordapp.net/attachments/826071766807216128/826072466295619604/9k.png",
+      status: "InProgress",
     },
     {
       id: 4,
@@ -31,6 +34,7 @@ const Orders = () => {
       time: 4,
       image:
         "https://media.discordapp.net/attachments/826071766807216128/826072533803204628/Z.png",
+      status: "InProgress"
     },
     {
       id: 5,
@@ -38,19 +42,30 @@ const Orders = () => {
       time: 4,
       image:
         "https://media.discordapp.net/attachments/826071766807216128/826072533803204628/Z.png",
+      status: "InProgress",
     },
   ]);
+
+  const OnDone = (orderID) => {
+    for (let i = order.length - 1; i >= 0; i--) {
+      if (order[i].id === orderID) {
+        order[i].status = "Done"
+      }
+    }
+    setOrders([...order]);
+  }
 
   return (
     <div>
       <Container>
         <Row>
           <CardDeck>
-            {order.map((orders) => (
+            {order.filter(x => { return x.status !== "Done" }).map((orders) => (
               <OrderItem
                 title={orders.name}
                 image={orders.image}
                 orderTime={orders.time}
+                onDoneClick={() => OnDone(orders.id)}
               />
             ))}
           </CardDeck>
