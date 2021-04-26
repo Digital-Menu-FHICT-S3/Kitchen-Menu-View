@@ -1,12 +1,18 @@
-import React from 'react'
-import { Card } from 'react-bootstrap'
+import React from "react";
+import { Card, Button } from "react-bootstrap";
 
-const OrderItem = ({Name}) => {
+const OrderItem = ({ Name, ImageLink }) => {
     return (
-        <Card>
-            <Card.Header>{Name}</Card.Header>
-        </Card>
-    )
-}
+        <div>
+            <Card>
+                <Card.Img variant="top" src={ImageLink} />
+                <Card.Body>
+                    <Card.Title>{Name}</Card.Title>
+                    <Card.Text>Food Items</Card.Text>
+                </Card.Body>
+            </Card>
+        </div>
+    );
+};
 
-export default OrderItem
+export default OrderItem;
