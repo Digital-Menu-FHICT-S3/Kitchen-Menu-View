@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import CreateFood from "../CreateFood/CreateFood";
 import ManageCategories from "../ManageCategories/ManageCategories";
 import DishesByCategory from "../DishesByCategory/DishesByCategory";
+import FinishedOrders from "../FinishedOrders/FinishedOrders";
 
 function App() {
   const [tipTotal, setTipTotal] = useState(0);
@@ -78,8 +79,14 @@ function App() {
             </Layout>
           </Route>
           <Route exact path="/orders">
-            <Layout title="Orders"></Layout>
-            <Orders />
+            <Layout title="Orders">
+              <Orders />
+            </Layout>
+          </Route>
+          <Route exact path="/orders/finished">
+            <Layout title="Finished Orders">
+              <FinishedOrders />
+            </Layout>
           </Route>
         </Switch>
       </Router>
