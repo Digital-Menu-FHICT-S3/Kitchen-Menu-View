@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import CreateFood from "../CreateFood/CreateFood";
 import ManageCategories from "../ManageCategories/ManageCategories";
+import FinishedOrders from "../FinishedOrders/FinishedOrders";
 
 function App() {
   const [tipTotal, setTipTotal] = useState(0);
