@@ -1,10 +1,10 @@
 import "./Header.sass";
 import { Nav, Navbar } from "react-bootstrap";
 import { GiKitchenKnives } from "react-icons/gi";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { MdDone } from "react-icons/md";
 import { CgAdd } from "react-icons/cg";
+import { GrInProgress } from "react-icons/gr";
 import { Link } from "react-router-dom";
-
 import React from "react";
 
 const Header = ({ headerTitle }) => {
@@ -18,13 +18,20 @@ const Header = ({ headerTitle }) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Nav.Link>
-              <Link className="link" to="/createfood">
-                <CgAdd size={30} />
+              <Link className="link" to="/Orders">
+                <MdDone size={30} />
               </Link>
             </Nav.Link>
             <Nav.Link>
-              <Link className="link" to="/checkout">
-                <AiOutlineShoppingCart size={30} />
+              <Link className="link" to="/Orders">
+                <GrInProgress size={30} />
+              </Link>
+            </Nav.Link>
+          </Nav>
+          <Nav className="ml-auto">
+            <Nav.Link>
+              <Link className="link" to="/createfood">
+                <CgAdd size={30} />
               </Link>
             </Nav.Link>
             <Nav.Link>

@@ -1,13 +1,10 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Layout from "../Layout/Layout";
-import ShoppingCart from "../ShoppingCart/ShoppingCart";
-import Categories from "../Categories/Categories";
 import Orders from "../Orders/Orders";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import CreateFood from "../CreateFood/CreateFood";
 import ManageCategories from "../ManageCategories/ManageCategories";
-import DishesByCategory from "../DishesByCategory/DishesByCategory";
 import FinishedOrders from "../FinishedOrders/FinishedOrders";
 
 function App() {
@@ -45,27 +42,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Layout title="Categories">
-              <Categories products={products} />
-            </Layout>
-          </Route>
-          <Route exact path="/checkout">
-            <Layout title="Shopping Cart">
-              <ShoppingCart
-                products={products}
-                tipTotal={tipTotal}
-                setTipTotal={setTipTotal}
-              />
-            </Layout>
-          </Route>
-          <Route exact path="/categories">
-            <Layout title="Categories">
-              <Categories products={products} />
-            </Layout>
-          </Route>
-          <Route exact path="/dishesbycategory">
-            <Layout title="DishesByCategory">
-              <DishesByCategory />
+            <Layout title="Orders">
+              <Orders />
             </Layout>
           </Route>
           <Route exact path="/createfood">
