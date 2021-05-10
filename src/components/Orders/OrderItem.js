@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 
-const OrderItem = ({ title, image, orderTime }) => {
+const OrderItem = ({ title, image, orderTime, onDoneClick }) => {
   return (
     <div>
       <Card>
@@ -12,7 +12,7 @@ const OrderItem = ({ title, image, orderTime }) => {
         </Card.Body>
         <Card.Footer>
           <small className="text-muted">{orderTime} mins ago</small>
-          <Button className="float-right">Done</Button>
+          <Button className="float-right" onClick={onDoneClick}>Done</Button>
         </Card.Footer>
       </Card>
     </div>

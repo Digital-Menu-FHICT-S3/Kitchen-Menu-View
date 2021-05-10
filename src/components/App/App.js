@@ -56,8 +56,14 @@ function App() {
             </Layout>
           </Route>
           <Route exact path="/orders">
-            <Layout title="Orders" />
-            <Orders />
+            <Layout title="Orders">
+              <Orders />
+            </Layout>
+          </Route>
+          <Route exact path="/orders/finished">
+            <Layout title="Finished Orders">
+              <FinishedOrders />
+            </Layout>
           </Route>
         </Switch>
       </Router>
