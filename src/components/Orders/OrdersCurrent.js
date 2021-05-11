@@ -58,8 +58,16 @@ const Orders = () => {
 
   const OnDone = (orderID) => {
     for (let i = order.length - 1; i >= 0; i--) {
-      if (order[i].id === orderID) {
-        order[i].status = "Done";
+      if (order[i].orderId === orderID) {
+        order[i].orderStatus = "Done";
+        axios
+          .put(
+            "http://localhost:9191/orders/update/" + order[i].orderId,
+            order[i],
+            { headers: { "Content-Type": "application/json" } }
+          )
+          .then(r => console.log(r.status))
+          .catch(e => console.log(e));
       }
     }
     setOrders([...order]);
@@ -80,7 +88,7 @@ const Orders = () => {
                   tableNum={orders.tableId}
                   image={orders.image}
                   orderTime={orders.dateTime}
-                  onDoneClick={() => OnDone(orders.id)}
+                  onDoneClick={() => OnDone(orders.orderId)}
                 />
               ))}
           </CardDeck>

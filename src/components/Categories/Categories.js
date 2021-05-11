@@ -91,7 +91,7 @@ const Categories = () => {
     <div>
       <Container>
         <Row>
-          {categories1.map((categorie) => (
+          {categories.map((categorie) => (
             <Col className="Column" sm={4}>
               <CategoriesItem
                 Name={categorie.name}
