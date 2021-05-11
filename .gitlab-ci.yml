@@ -11,7 +11,7 @@ npm-test:
     - echo "Install npm..."
     - npm install
     - echo "Run npm test..."
-    - npm test
+    - npm test -- --coverage
 
 deploy-prod:
   stage: deploy
