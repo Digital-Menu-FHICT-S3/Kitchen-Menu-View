@@ -62,7 +62,7 @@ const Orders = () => {
         order[i].orderStatus = "Done";
         axios
           .put(
-            "http://localhost:9191/orders/done/" + order[i].orderId,
+            "http://localhost:9191/orders/update/" + order[i].orderId,
             order[i],
             { headers: { "Content-Type": "application/json" } }
           )
