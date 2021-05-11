@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Layout from "../Layout/Layout";
-import Orders from "../Orders/Orders";
+import OrdersCurrent from "../Orders/OrdersCurrent";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import CreateFood from "../CreateFood/CreateFood";
 import ManageCategories from "../ManageCategories/ManageCategories";
 import FinishedOrders from "../FinishedOrders/FinishedOrders";
+import OrdersDone from "../Orders/OrdersDone";
 
 function App() {
   const [tipTotal, setTipTotal] = useState(0);
@@ -42,8 +43,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Layout title="Orders">
-              <Orders />
+            <Layout title="Current">
+              <OrdersCurrent />
             </Layout>
           </Route>
           <Route exact path="/createfood">
@@ -56,9 +57,14 @@ function App() {
               <ManageCategories />
             </Layout>
           </Route>
-          <Route exact path="/orders">
-            <Layout title="Orders">
-              <Orders />
+          <Route exact path="/OrdersCurrent">
+            <Layout title="Current">
+              <OrdersCurrent />
+            </Layout>
+          </Route>
+          <Route exact path="/OrdersDone">
+            <Layout title="Done">
+              <OrdersDone />
             </Layout>
           </Route>
           <Route exact path="/orders/finished">

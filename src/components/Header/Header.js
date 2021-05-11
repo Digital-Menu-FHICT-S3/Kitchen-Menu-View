@@ -1,9 +1,9 @@
 import "./Header.sass";
 import { Nav, Navbar } from "react-bootstrap";
-import { GiKitchenKnives } from "react-icons/gi";
 import { MdDone } from "react-icons/md";
 import { CgAdd } from "react-icons/cg";
 import { GrInProgress } from "react-icons/gr";
+import { GiKnifeFork } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import React from "react";
 
@@ -18,12 +18,12 @@ const Header = ({ headerTitle }) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Nav.Link>
-              <Link className="link" to="/Orders">
+              <Link className="link" to="/OrdersDone">
                 <MdDone size={30} />
               </Link>
             </Nav.Link>
             <Nav.Link>
-              <Link className="link" to="/Orders">
+              <Link className="link" to="/OrdersCurrent">
                 <GrInProgress size={30} />
               </Link>
             </Nav.Link>
@@ -35,8 +35,8 @@ const Header = ({ headerTitle }) => {
               </Link>
             </Nav.Link>
             <Nav.Link>
-              <Link className="link" to="/Orders">
-                <GiKitchenKnives id="icon" size={30} />
+              <Link className="link" to="/managecategories">
+                <GiKnifeFork size={30} />
               </Link>
             </Nav.Link>
           </Nav>
