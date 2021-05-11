@@ -57,12 +57,9 @@ const Orders = () => {
   }, []);
 
   const OnDone = (orderID) => {
-    console.log("Order ID is: " + orderID)
     for (let i = order.length - 1; i >= 0; i--) {
       if (order[i].orderId === orderID) {
-        console.log("Order Zoek ID: " + order[i].orderId);
         order[i].orderStatus = "Done";
-        console.log(order[i])
         axios
           .put(
             "http://localhost:9191/orders/done/" + order[i].orderId,
@@ -74,7 +71,6 @@ const Orders = () => {
       }
     }
     setOrders([...order]);
-    console.log(order)
   };
 
   return (
