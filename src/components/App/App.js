@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import CreateFood from "../CreateFood/CreateFood";
 import ManageCategories from "../ManageCategories/ManageCategories";
-import FinishedOrders from "../FinishedOrders/FinishedOrders";
 import OrdersDone from "../Orders/OrdersDone";
 
 function App() {
@@ -65,11 +64,6 @@ function App() {
           <Route exact path="/OrdersDone">
             <Layout title="Done">
               <OrdersDone />
-            </Layout>
-          </Route>
-          <Route exact path="/orders/finished">
-            <Layout title="Finished Orders">
-              <FinishedOrders />
             </Layout>
           </Route>
         </Switch>
