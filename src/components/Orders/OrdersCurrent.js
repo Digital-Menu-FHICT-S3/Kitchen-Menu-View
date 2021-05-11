@@ -77,6 +77,7 @@ const Orders = () => {
               .map((orders) => (
                 <OrderItem
                   title={orders.name}
+                  tableNum={orders.tableId}
                   image={orders.image}
                   orderTime={orders.dateTime}
                   onDoneClick={() => OnDone(orders.id)}
