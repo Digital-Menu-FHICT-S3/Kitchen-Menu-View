@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CardDeck, Container, Row } from "react-bootstrap";
 import OrderItem from "./OrderItem";
 import axios from "axios";
+import { statusEnum } from './statusEnum'
 
 const Orders = () => {
   // const [order, setOrders] = useState([
@@ -59,7 +60,7 @@ const Orders = () => {
   const OnDone = (orderID) => {
     for (let i = order.length - 1; i >= 0; i--) {
       if (order[i].orderId === orderID) {
-        order[i].orderStatus = "Done";
+        order[i].orderStatus = statusEnum.Done;
         axios
           .put(
             "http://localhost:9191/orders/update/" + order[i].orderId,
@@ -80,7 +81,7 @@ const Orders = () => {
           <CardDeck>
             {order
               .filter((x) => {
-                return x.orderStatus !== "Done";
+                return x.orderStatus !== statusEnum.Done;
               })
               .map((orders) => (
                 <OrderItem
