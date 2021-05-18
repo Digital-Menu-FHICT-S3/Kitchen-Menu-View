@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
+import axios from 'axios';
 
-const OrderItem = ({ title, tableNum, image, orderTime, onDoneClick }) => {
+const OrderItem = ({ id, title, tableNum, image, orderTime, onDoneClick }) => {
+
+  const [DishesInOrder, setDishesInOrder] = useState([])
+  const [Dishes, setDishes] = useState([])
+
+  useEffect(() => {
+    const fetchOrderLines = async () => {
+      const result = await axios("http://localhost:9191/orders/orderlines/fromorder/" + id);
+      return result.data;
+    };
+    fetchOrderLines().then((r) => setDishesInOrder(r));
+  }, []);
+
+  useEffect(() => {
+    const fetchDishes = async () => {
+      const result = await axios("http://localhost:9191/menu/dishes/all");
+      return result.data;
+    };
+    fetchDishes().then((r) => setDishes(r));
+  }, [])
+
+  const getDishName = (id) => {
+    for (var dish of Dishes) {
+      if (dish.dishId === id) {
+        return dish.name;
+      }
+    }
+  }
 
   const timeAgo = (prevDate) => {
     const diff = Number(new Date()) - new Date(prevDate);
@@ -12,7 +40,7 @@ const OrderItem = ({ title, tableNum, image, orderTime, onDoneClick }) => {
     const year = day * 365;
     switch (true) {
       case diff < 0:
-        return "NaN"
+        return "Time Unavailible"
       case diff < minute:
         const seconds = Math.round(diff / 1000);
         return `${seconds} ${seconds > 1 ? 'seconds' : 'second'} ago`
@@ -43,6 +71,11 @@ const OrderItem = ({ title, tableNum, image, orderTime, onDoneClick }) => {
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <Card.Text>Tafel {+" " + tableNum}</Card.Text>
+          {DishesInOrder
+            .map((dish) => (
+              <Card.Text>{`${dish.amount}x ${getDishName(dish.dishId)}`}</Card.Text>
+            )
+            )}
         </Card.Body>
         <Card.Footer>
           <small className="text-muted">{timeAgo(orderTime)}</small>

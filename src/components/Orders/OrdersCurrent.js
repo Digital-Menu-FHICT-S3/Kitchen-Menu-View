@@ -93,6 +93,7 @@ const Orders = () => {
               })
               .map((orders) => (
                 <OrderItem
+                  id={orders.orderId}
                   title={orders.name}
                   tableNum={orders.tableId}
                   image={orders.image}
