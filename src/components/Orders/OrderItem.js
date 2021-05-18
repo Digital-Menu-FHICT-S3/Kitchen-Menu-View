@@ -11,19 +11,26 @@ const OrderItem = ({ title, tableNum, image, orderTime, onDoneClick }) => {
     const month = day * 30;
     const year = day * 365;
     switch (true) {
+      case diff < 0:
+        return "NaN"
       case diff < minute:
         const seconds = Math.round(diff / 1000);
         return `${seconds} ${seconds > 1 ? 'seconds' : 'second'} ago`
       case diff < hour:
-        return `${Math.round(diff / minute)} ${Math.round(diff / minute) > 1 ? 'minutes' : 'minute'} ago`;
+        const minutes = Math.round(diff / minute);
+        return `${minutes} ${minutes > 1 ? 'minutes' : 'minute'} ago`;
       case diff < day:
-        return `${Math.round(diff / hour)} ${Math.round(diff / hour) > 1 ? 'hours' : 'hour'} ago`;
+        const hours = Math.round(diff / hour);
+        return `${hours} ${hours > 1 ? 'hours' : 'hour'} ago`;
       case diff < month:
-        return `${Math.round(diff / day)} ${Math.round(diff / day) > 1 ? 'days' : 'day'} ago`;
+        const days = Math.round(diff / day);
+        return `${days} ${days > 1 ? 'days' : 'day'} ago`;
       case diff < year:
-        return `${Math.round(diff / month)} ${Math.round(diff / month) > 1 ? 'months' : 'month'} ago`;
+        const months = Math.round(diff / month)
+        return `${months} ${months > 1 ? 'months' : 'month'} ago`;
       case diff > year:
-        return `${Math.round(diff / year)} ${Math.round(diff / year) > 1 ? 'years' : 'year'} ago`;
+        const years = Math.round(diff / year);
+        return `${years} ${years > 1 ? 'years' : 'year'} ago`;
       default:
         return "";
     }
