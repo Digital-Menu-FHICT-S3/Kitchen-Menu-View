@@ -75,11 +75,11 @@ const Orders = () => {
     setOrders([...order]);
   };
 
-  var [date, setDate] = useState(new Date());
-  const GetDifferenceCurrentTime = (date1) => {
-    const diffInMs = Math.abs(date1 - date.toLocaleTimeString);
-    return diffInMs / (1000 * 60);
-  };
+  // var [date, setDate] = useState(new Date());
+  // const GetDifferenceCurrentTime = (date1) => {
+  //   const diffInMs = Math.abs(date1 - date.toLocaleTimeString);
+  //   return diffInMs / (1000 * 60);
+  // };
 
   return (
     <div>
@@ -92,6 +92,7 @@ const Orders = () => {
               })
               .map((orders) => (
                 <OrderItem
+                  id={orders.orderId}
                   title={orders.name}
                   tableNum={orders.tableId}
                   image={orders.image}
