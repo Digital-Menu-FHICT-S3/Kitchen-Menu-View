@@ -56,6 +56,14 @@ const Orders = () => {
       return result.data;
     };
     fetchOrders().then((r) => setOrders(r));
+
+    setInterval(() => {
+      const fetchOrders = async () => {
+        const result = await axios("http://localhost:9191/orders/all");
+        return result.data;
+      };
+      fetchOrders().then((r) => setOrders(r));
+    }, 10000);
   }, []);
 
   const OnDone = (orderID) => {
