@@ -59,12 +59,12 @@ function ManageIngredients() {
                             .sort((a, b) => a.name.localeCompare(b.name))
                             .map((ingredient) => (
                                 <Row>
-                                    <Col className='Column' sm={2}>
-                                        <label>{ingredient.name}</label>
+                                    <Col className='Column' sm={1}>
+                                        <button className='btn btn-danger' onClick={() => OnRemove(ingredient.ingredientId)}>X</button>
                                     </Col>
 
-                                    <Col className='Column' sm={2}>
-                                        <button className='btn btn-danger' onClick={() => OnRemove(ingredient.ingredientId)}>X</button>
+                                    <Col className='Column'>
+                                        <label>{ingredient.name}</label>
                                     </Col>
                                 </Row>
                             ))}

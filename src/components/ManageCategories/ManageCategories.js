@@ -62,12 +62,12 @@ function ManageCategories() {
                             .sort((a, b) => a.name.localeCompare(b.name))
                             .map((categorie) => (
                                 <Row>
-                                    <Col className='Column' sm={2}>
-                                        <label>{categorie.name}</label>
+                                    <Col className='Column' sm={1}>
+                                        <button className='btn btn-danger' onClick={() => OnRemove(categorie.categoryId)}>X</button>
                                     </Col>
 
-                                    <Col className='Column' sm={2}>
-                                        <button className='btn btn-danger' onClick={() => OnRemove(categorie.categoryId)}>X</button>
+                                    <Col className='Column'>
+                                        <label>{categorie.name}</label>
                                     </Col>
                                 </Row>
                             ))}
