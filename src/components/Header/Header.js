@@ -3,7 +3,7 @@ import { Nav, Navbar } from "react-bootstrap";
 import { MdDone } from "react-icons/md";
 import { CgAdd } from "react-icons/cg";
 import { GrInProgress } from "react-icons/gr";
-import { GiKnifeFork } from "react-icons/gi";
+import { GiKnifeFork, GiAppleSeeds } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import React from "react";
 
@@ -37,6 +37,11 @@ const Header = ({ headerTitle }) => {
             <Nav.Link>
               <Link className="link" to="/managecategories">
                 <GiKnifeFork size={30} />
+              </Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link className="link" to="/manageingredients">
+                <GiAppleSeeds size={30} />
               </Link>
             </Nav.Link>
           </Nav>
