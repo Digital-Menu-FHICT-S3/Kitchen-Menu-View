@@ -28,7 +28,9 @@ function ManageIngredients() {
         await axios
             .post(
                 "http://localhost:9191/ingredient/create/",
-                '{"name": "' + props.Name + '"}',
+                {
+                    name: props.Name,
+                },
                 { headers: { "Content-Type": "application/json" } }
             )
             .then(r => console.log(r.status))
