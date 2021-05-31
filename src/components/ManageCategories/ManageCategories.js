@@ -1,71 +1,76 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
 import { Container, Row, Col, Form } from 'react-bootstrap'
 import { useForm } from "react-hook-form"
 
 function ManageCategories() {
+
+    const [categories, setCategories] = useState([])
     const { register, handleSubmit } = useForm();
 
-    const OnRemove = (categorieID) => {
-        alert(`${categorieID} Removed`);
+    useEffect(() => {
+        FetchCategories()
+    }, []);
 
-        for (let i = categories.length - 1; i >= 0; i--) {
-            if (categories[i].id === categorieID) {
-                categories.splice(i, 1);
-                break;
-            }
-        }
+    async function OnRemove(CategorieId) {
 
-        setCategories([...categories]);
+        await axios
+            .delete("http://localhost:9191/menu/categories/delete/" + CategorieId,
+                { headers: { "Content-Type": "application/json" } }
+            )
+            .then(r => console.log(r.status))
+            .catch(e => console.log(e));
+
+        FetchCategories();
     }
 
-    const OnAdd = (props) => {
+    async function OnAdd(props, e) {
 
-        setCategories(categories => [...categories, {
-            id: Math.max.apply(Math, categories.map(function (o) { return o.id })) + 1,
-            name: props.Name,
-            image: props.Url,
-        }]);
+        await axios
+            .post(
+                "http://localhost:9191/menu/categories/create/",
+                {
+                    name: props.Name,
+                    imageUrl: props.Url
+                },
+                { headers: { "Content-Type": "application/json" } }
+            )
+            .then(r => console.log(r.status))
+            .catch(e => console.log(e));
+
+        FetchCategories();
+
+        e.target.reset();
+
     }
 
-    const [categories, setCategories] = useState([
-        {
-            id: 0,
-            name: 'Pasta',
-            image: 'https://media.discordapp.net/attachments/826071766807216128/826072364059852800/Z.png'
-        },
-        {
-            id: 1,
-            name: 'Vlees',
-            image: 'https://media.discordapp.net/attachments/826071766807216128/826071810126381116/9k.png'
-        },
-        {
-            id: 2,
-            name: 'Vis',
-            image: 'https://media.discordapp.net/attachments/826071766807216128/826072466295619604/9k.png'
-        },
-        {
-            id: 3,
-            name: 'Soep',
-            image: 'https://media.discordapp.net/attachments/826071766807216128/826072533803204628/Z.png'
-        }
-    ])
+    function FetchCategories() {
+        const fetchCategories = async () => {
+            const result = await axios("http://localhost:9191/menu/categories/all");
+            return result.data;
+        };
+        fetchCategories().then((r) => setCategories(r));
+    }
+
 
     return (
         <div>
             <Container >
                 <Row>
                     <Col>
-                        {categories.map((categorie) => (
-                            <Row>
-                                <Col className='Column' sm={2}>
-                                    <label>{categorie.name}</label>
-                                </Col>
+                        {categories
+                            .sort((a, b) => a.name.localeCompare(b.name))
+                            .map((categorie) => (
+                                <Row>
+                                    <Col className='Column' sm={2}>
+                                        <label>{categorie.name}</label>
+                                    </Col>
 
-                                <Col className='Column' sm={2}>
-                                    <button className='btn btn-danger' onClick={() => OnRemove(categorie.id)}>X</button>
-                                </Col>
-                            </Row>
-                        ))}
+                                    <Col className='Column' sm={2}>
+                                        <button className='btn btn-danger' onClick={() => OnRemove(categorie.categoryId)}>X</button>
+                                    </Col>
+                                </Row>
+                            ))}
                     </Col>
                     <Col>
                         <Form onSubmit={handleSubmit(OnAdd)}>
