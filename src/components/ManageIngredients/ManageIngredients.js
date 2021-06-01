@@ -1,73 +1,70 @@
-import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap'
 import { useForm } from "react-hook-form"
 
-function ManageCategories() {
-
-    const [categories, setCategories] = useState([])
+function ManageIngredients() {
+    const [ingredients, setIngredients] = useState([])
     const { register, handleSubmit } = useForm();
 
     useEffect(() => {
-        FetchCategories()
+        FetchOrders()
     }, []);
 
-    async function OnRemove(CategorieId) {
+    async function OnRemove(IngredientId) {
 
         await axios
-            .delete("http://localhost:9191/menu/categories/delete/" + CategorieId,
+            .delete("http://localhost:9191/ingredient/delete/" + IngredientId,
                 { headers: { "Content-Type": "application/json" } }
             )
             .then(r => console.log(r.status))
             .catch(e => console.log(e));
 
-        FetchCategories();
+        FetchOrders();
     }
 
     async function OnAdd(props, e) {
 
         await axios
             .post(
-                "http://localhost:9191/menu/categories/create/",
+                "http://localhost:9191/ingredient/create/",
                 {
                     name: props.Name,
-                    imageUrl: props.Url
                 },
                 { headers: { "Content-Type": "application/json" } }
             )
             .then(r => console.log(r.status))
             .catch(e => console.log(e));
 
-        FetchCategories();
+        FetchOrders();
 
         e.target.reset();
 
     }
 
-    function FetchCategories() {
-        const fetchCategories = async () => {
-            const result = await axios("http://localhost:9191/menu/categories/all");
+    function FetchOrders() {
+        const fetchOrders = async () => {
+            const result = await axios("http://localhost:9191/ingredient/all");
             return result.data;
         };
-        fetchCategories().then((r) => setCategories(r));
+        fetchOrders().then((r) => setIngredients(r));
     }
-
 
     return (
         <div>
             <Container >
                 <Row>
                     <Col>
-                        {categories
+                        {ingredients
                             .sort((a, b) => a.name.localeCompare(b.name))
-                            .map((categorie) => (
+                            .map((ingredient) => (
                                 <Row>
                                     <Col className='Column' sm={1}>
-                                        <button className='btn btn-danger' onClick={() => OnRemove(categorie.categoryId)}>X</button>
+                                        <button className='btn btn-danger' onClick={() => OnRemove(ingredient.ingredientId)}>X</button>
                                     </Col>
 
                                     <Col className='Column'>
-                                        <label>{categorie.name}</label>
+                                        <label>{ingredient.name}</label>
                                     </Col>
                                 </Row>
                             ))}
@@ -78,11 +75,6 @@ function ManageCategories() {
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control type="text" placeholder="Name" name="Name" ref={register} />
 
-                            </Form.Group>
-
-                            <Form.Group controlId="formBasicUrl">
-                                <Form.Label>ImageLink</Form.Label>
-                                <Form.Control type="text" placeholder="https://site.nl/image" name="Url" ref={register} />
                             </Form.Group>
 
                             <div className="buttonContainer">
@@ -98,4 +90,4 @@ function ManageCategories() {
     )
 }
 
-export default ManageCategories
+export default ManageIngredients
