@@ -20,14 +20,14 @@ describe('renders without crashing', () => {
 
 describe('Enum value\'s correct', () => {
     test('ToDo = 1', () => {
-        expect(statusEnum.ToDo.value).toBe(1)
+        expect(statusEnum.ToDo.value).toBe(0)
     })
 
     test('InProgress = 2', () => {
-        expect(statusEnum.InProgress.value).toBe(2)
+        expect(statusEnum.InProgress.value).toBe(1)
     })
 
     test('Done = 3', () => {
-        expect(statusEnum.Done.value).toBe(3)
+        expect(statusEnum.Done.value).toBe(2)
     })
 });
