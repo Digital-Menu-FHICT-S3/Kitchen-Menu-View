@@ -68,7 +68,7 @@ const Orders = () => {
   const OnDone = (orderID) => {
     for (let i = order.length - 1; i >= 0; i--) {
       if (order[i].orderId === orderID) {
-        order[i].orderStatus = statusEnum.Done;
+        order[i].orderStatus = statusEnum.Done.name;
         axios
           .put(
             "http://localhost:9191/orders/update/" + order[i].orderId,
