@@ -88,7 +88,7 @@ const Orders = () => {
           <CardDeck>
             {order
               .filter((x) => {
-                return x.orderStatus === statusEnum.Done;
+                return x.orderStatus === statusEnum.Done.name;
               })
               .map((orders) => (
                 <OrderItem
