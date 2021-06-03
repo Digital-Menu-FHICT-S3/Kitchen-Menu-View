@@ -1,5 +1,5 @@
-export var statusEnum = {
-    ToDo: 1,
-    InProgress: 2,
-    Done: 3
+export const statusEnum = {
+    ToDo: { value: 0, name: "ToDo" },
+    InProgress: { value: 1, name: "InProgress" },
+    Done: { value: 2, name: "Done" }
 }
