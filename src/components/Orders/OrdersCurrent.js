@@ -5,48 +5,6 @@ import axios from "axios";
 import { statusEnum } from './statusEnum'
 
 const Orders = () => {
-  // const [order, setOrders] = useState([
-  //   {
-  //     id: 1,
-  //     name: "Tafel 1",
-  //     time: 1,
-  //     image:
-  //       "https://media.discordapp.net/attachments/826071766807216128/826072364059852800/Z.png",
-  //     status: "Done",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Tafel 2",
-  //     time: 2,
-  //     image:
-  //       "https://media.discordapp.net/attachments/826071766807216128/826071810126381116/9k.png",
-  //     status: "Done",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Tafel 3",
-  //     time: 3,
-  //     image:
-  //       "https://media.discordapp.net/attachments/826071766807216128/826072466295619604/9k.png",
-  //     status: "Done",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Tafel 4",
-  //     time: 4,
-  //     image:
-  //       "https://media.discordapp.net/attachments/826071766807216128/826072533803204628/Z.png",
-  //     status: "InProgress",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Tafel 5",
-  //     time: 4,
-  //     image:
-  //       "https://media.discordapp.net/attachments/826071766807216128/826072533803204628/Z.png",
-  //     status: "InProgress",
-  //   },
-  // ]);
   const [order, setOrders] = useState([]);
 
   useEffect(() => {
