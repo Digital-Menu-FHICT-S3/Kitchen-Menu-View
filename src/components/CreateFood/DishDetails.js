@@ -1,13 +1,7 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Dropdown from "react-bootstrap/Dropdown";
-import {useForm} from "react-hook-form";
 import axios from 'axios'
-// import FileBase64 from 'react-filebase64';
-
 
 const DishDetails = ({onFormChange}) => {
 
@@ -18,7 +12,6 @@ const DishDetails = ({onFormChange}) => {
         axios.get('http://localhost:9191/menu/categories/all')
             .then(res => {
                 setCategory(res.data)
-                console.log(res)
             })
             .catch(err => {
                 console.log(err)

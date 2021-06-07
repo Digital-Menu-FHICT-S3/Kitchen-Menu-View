@@ -30,7 +30,7 @@ const Header = ({ headerTitle }) => {
           </Nav>
           <Nav className="ml-auto">
             <Nav.Link>
-              <Link className="link" to="/createfood">
+              <Link className="link" to="/add-dish">
                 <CgAdd size={30} />
               </Link>
             </Nav.Link>

@@ -6,11 +6,12 @@ import Row from "react-bootstrap/row";
 import Col from "react-bootstrap/col";
 import Container from "react-bootstrap/container";
 import axios from "axios";
-import {forEach} from "react-bootstrap/ElementChildren";
 
 const CreateFood = () => {
 
-    const [info, setInfo] = useState({})
+    const [info, setInfo] = useState({
+        category: 1
+    })
     const [ingredients, setIngredients] = useState([])
 
     const onFormSubmit = () => {
@@ -28,7 +29,7 @@ const CreateFood = () => {
 
         axios.post(
             'http://localhost:9191/menu/dishes/create', category
-        ).then(r => console.log(r));
+        ).then(window.location.reload(false));
     };
 
         // This method is passed down to child components.
