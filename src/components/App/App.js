@@ -10,35 +10,6 @@ import OrdersDone from "../Orders/OrdersDone";
 import Stock from "../Stock/Stock";
 
 function App() {
-  const [tipTotal, setTipTotal] = useState(0);
-
-  const [products, setItems] = useState([
-    {
-      id: 1,
-      name: "Tomato Soup",
-      price: "4.00",
-      description: "This is soup made with tomatoes",
-    },
-    {
-      id: 2,
-      name: "Salad",
-      price: "3.00",
-      description: "Salad with dressing",
-    },
-    {
-      id: 3,
-      name: "Steak",
-      price: "6.00",
-      description: "Lorem Ipsum",
-    },
-    {
-      id: 4,
-      name: "Soup of the day",
-      price: "3.50",
-      description: "Ask the waiter for more information",
-    },
-  ]);
-
   return (
     <div className="App">
       <Router>
@@ -48,9 +19,14 @@ function App() {
               <OrdersCurrent />
             </Layout>
           </Route>
-          <Route exact path="/createfood">
-            <Layout title="CreateFood">
+          <Route exact path="/add-dish">
+            <Layout title="Add Dish">
               <CreateFood />
+            </Layout>
+          </Route>
+          <Route exact path="/stock">
+            <Layout title="Stock">
+              <Stock />
             </Layout>
           </Route>
           <Route exact path="/managecategories">
