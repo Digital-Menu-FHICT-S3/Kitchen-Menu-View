@@ -7,6 +7,7 @@ import CreateFood from "../CreateFood/CreateFood";
 import ManageCategories from "../ManageCategories/ManageCategories";
 import ManageIngredients from "../ManageIngredients/ManageIngredients"
 import OrdersDone from "../Orders/OrdersDone";
+import Stock from "../Stock/Stock";
 
 function App() {
   const [tipTotal, setTipTotal] = useState(0);
@@ -70,6 +71,11 @@ function App() {
           <Route exact path="/OrdersDone">
             <Layout title="Done">
               <OrdersDone />
+            </Layout>
+          </Route>
+          <Route exact path="/Stock">
+            <Layout title="stock">
+              <Stock />
             </Layout>
           </Route>
         </Switch>

@@ -1,5 +1,5 @@
-import React from "react";
-import "./Footer.sass";
+import React from 'react';
+import "./Footer.sass"
 import Container from "react-bootstrap/Container";
 
 const Footer = () => {

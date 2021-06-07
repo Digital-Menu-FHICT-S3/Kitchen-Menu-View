@@ -4,6 +4,8 @@ import { MdDone } from "react-icons/md";
 import { CgAdd } from "react-icons/cg";
 import { GrInProgress } from "react-icons/gr";
 import { GiKnifeFork, GiAppleSeeds } from "react-icons/gi";
+import { BsDashSquare } from "react-icons/bs";
+
 import { Link } from "react-router-dom";
 import React from "react";
 
@@ -42,6 +44,11 @@ const Header = ({ headerTitle }) => {
             <Nav.Link>
               <Link className="link" to="/manageingredients">
                 <GiAppleSeeds size={30} />
+              </Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link className="link" to="/stock">
+                <BsDashSquare size={30} />
               </Link>
             </Nav.Link>
           </Nav>
