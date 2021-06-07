@@ -14,33 +14,23 @@ const Header = ({ headerTitle }) => {
         <Link to="/">
           <Navbar.Brand> {headerTitle} </Navbar.Brand>
         </Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Nav.Link>
-              <Link className="link" to="/OrdersDone">
+              <Link className="link" to="/finished-orders">
                 <MdDone size={30} />
               </Link>
             </Nav.Link>
             <Nav.Link>
-              <Link className="link" to="/OrdersCurrent">
+              <Link className="link" to="/current-orders">
                 <GrInProgress size={30} />
               </Link>
             </Nav.Link>
           </Nav>
           <Nav className="ml-auto">
             <Nav.Link>
-              <Link className="link" to="/add-dish">
-                <CgAdd size={30} />
-              </Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link className="link" to="/managecategories">
-                <GiKnifeFork size={30} />
-              </Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link className="link" to="/manageingredients">
+              <Link className="link" to="/stock">
                 <GiAppleSeeds size={30} />
               </Link>
             </Nav.Link>

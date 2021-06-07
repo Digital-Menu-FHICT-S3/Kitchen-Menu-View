@@ -5,10 +5,12 @@ import Footer from "../Footer/Footer";
 
 const Layout = (props) => {
     return (
-        <div>
-            <Header headerTitle={props.title} />
-            { props.children}
-            <Footer />
+        <div className="app-wrapper">
+            <Header headerTitle={props.title}/>
+            {props.children}
+            <div className="footer-wrapper">
+                <Footer/>
+            </div>
         </div>
     );
 };
