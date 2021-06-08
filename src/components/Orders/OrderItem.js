@@ -32,7 +32,13 @@ const OrderItem = ({ id, title, tableNum, image, orderTime, onDoneClick }) => {
   }
 
   const timeAgo = (prevDate) => {
-    const diff = Number(new Date()) - new Date(prevDate);
+
+    let previousDate = new Date(prevDate)
+    let offset = new Date().getTimezoneOffset(); //returns 120 for GMT+1 + SummerTime
+    previousDate.setMinutes(previousDate.getMinutes() - offset)
+
+    const diff = Number(new Date()) - new Date(previousDate);
+
     const minute = 60 * 1000;
     const hour = minute * 60;
     const day = hour * 24;
