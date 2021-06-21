@@ -1,7 +1,6 @@
 import "./Header.sass";
 import { Nav, Navbar } from "react-bootstrap";
 import { MdDone } from "react-icons/md";
-import { CgAdd } from "react-icons/cg";
 import { GrInProgress } from "react-icons/gr";
 import { GiKnifeFork, GiAppleSeeds } from "react-icons/gi";
 import { BsDashSquare } from "react-icons/bs";
@@ -35,11 +34,6 @@ const Header = ({ headerTitle }) => {
             </Nav.Link>
           </Nav>
           <Nav className="ml-auto">
-            <Nav.Link>
-              <Link className="link" to="/add-dish">
-                <CgAdd size={30} />
-              </Link>
-            </Nav.Link>
             <Nav.Link>
               <Link className="link" to="/managecategories">
                 <GiKnifeFork size={30} />

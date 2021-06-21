@@ -2,7 +2,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import OrdersCurrent from "../Orders/OrdersCurrent";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
+import ManageCategories from "../ManageCategories/ManageCategories";
+import ManageIngredients from "../ManageIngredients/ManageIngredients";
+import React from "react";
 import OrdersDone from "../Orders/OrdersDone";
 import Stock from "../Stock/Stock";
 import "./App.sass";
@@ -15,16 +17,6 @@ function App() {
           <Route exact path="/">
             <Layout title="Current">
               <OrdersCurrent />
-            </Layout>
-          </Route>
-          <Route exact path="/add-dish">
-            <Layout title="Add Dish">
-              <CreateFood />
-            </Layout>
-          </Route>
-          <Route exact path="/stock">
-            <Layout title="Stock">
-              <Stock />
             </Layout>
           </Route>
           <Route exact path="/managecategories">
