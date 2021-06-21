@@ -12,7 +12,7 @@ const IngredientSelector = ({index, value, ingredients, deleteIngredient, onSele
                 </select>
             </div>
             <div id="div2">
-                <input type="number" className="form-control" onChange={e => onAmountChange(index, e.target.value)}/>
+                <input type="number" className="form-control" min="0" onChange={e => onAmountChange(index, e.target.value)}/>
             </div>
             <div className="deleteBtn">
                 <button type="button" className="btn btn-danger" onClick={() => deleteIngredient(index)}>
