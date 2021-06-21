@@ -10,11 +10,13 @@ import logo from "../../assets/m_sticky_header.png"
 const Header = ({headerTitle}) => {
     return (
         <div className="header-wrapper">
-            <Navbar bg="light" expand="lg">
+            <Navbar className="navbar" expand="lg">
                 <Link to="/">
                     <Navbar.Brand>
-                        <img src={logo} id="logo"/>
-                        {headerTitle}
+                        <img src={logo} id="logo" />
+                        <a className="header-title">
+                            {headerTitle}
+                        </a>
                     </Navbar.Brand>
                 </Link>
 
