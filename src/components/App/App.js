@@ -3,11 +3,9 @@ import Layout from "../Layout/Layout";
 import OrdersCurrent from "../Orders/OrdersCurrent";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
-import CreateFood from "../CreateFood/CreateFood";
-import ManageCategories from "../ManageCategories/ManageCategories";
-import ManageIngredients from "../ManageIngredients/ManageIngredients"
 import OrdersDone from "../Orders/OrdersDone";
 import Stock from "../Stock/Stock";
+import "./App.sass";
 
 function App() {
   return (

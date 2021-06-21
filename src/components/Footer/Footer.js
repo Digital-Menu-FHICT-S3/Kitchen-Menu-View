@@ -1,17 +1,17 @@
-import React from 'react';
-import "./Footer.sass"
-import Container from "react-bootstrap/Container";
+import React from "react";
+import "./Footer.sass";
 
 const Footer = () => {
-  return (
-    <div className="footer">
-      <Container>
-        <div className="footer-container">
-          <span>Footer</span>
+    return (
+        <div className="footer">
+            <p className="footer-text">
+                © Copyright 2021 | Mediaan Restaurant App
+            </p>
+            <p className="footer-text">
+                Frankenlaan 5 | 6419 BT Heerlen | Tel: +31 (0)45 571 83 55
+            </p>
         </div>
-      </Container>
-    </div>
-  );
+    );
 };
 
 export default Footer;

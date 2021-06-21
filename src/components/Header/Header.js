@@ -8,13 +8,17 @@ import { BsDashSquare } from "react-icons/bs";
 
 import { Link } from "react-router-dom";
 import React from "react";
+import logo from "../../assets/m_sticky_header.png"
 
 const Header = ({ headerTitle }) => {
   return (
     <div>
       <Navbar bg="light" expand="lg">
         <Link to="/">
-          <Navbar.Brand> {headerTitle} </Navbar.Brand>
+          <Navbar.Brand>
+            <img src={logo} id="logo" />
+            {headerTitle}
+          </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
