@@ -7,7 +7,7 @@ const IngredientSelector = ({index, value, ingredients, deleteIngredient, onSele
             <div className="form-group mx-sm-3 mb-2" id="div1">
                 <select value={value} className="form-control" id="category" name="category" onChange={e => onSelectorChange(index, e.target.value)}>
                     {ingredients.map(ingredient => (
-                        <option value={ingredient.name}>{ingredient.title}</option>
+                        <option value={ingredient.id}>{ingredient.name}</option>
                     ))}
                 </select>
             </div>

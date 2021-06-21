@@ -28,7 +28,7 @@ const CreateFood = () => {
         }
 
         axios.post(
-            'http://localhost:9191/menu/dishes/create', category
+            'http://localhost:9191/menu/dishes/saveDish', category
         ).then(window.location.reload(false));
     };
 

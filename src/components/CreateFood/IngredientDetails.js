@@ -10,7 +10,7 @@ const IngredientDetails = ({selectedIngredients, onIngredientChange}) => {
 
     //Fill Ingredients With Placeholders
     useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/todos')
+        axios.get('http://localhost:9191/ingredient/all')
             .then(res => {
                 setIngredients(res.data)
                 console.log(res)
@@ -22,7 +22,7 @@ const IngredientDetails = ({selectedIngredients, onIngredientChange}) => {
 
     const addNewIngredient = () => {
         onIngredientChange(selectedIngredients => [...selectedIngredients, {
-            name: ingredients[0].title,
+            name: ingredients[0].name,
             amount: 0
         }]);
     }
