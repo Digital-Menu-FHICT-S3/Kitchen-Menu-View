@@ -82,10 +82,6 @@ const Stock = () => {
                             </tbody>
                         </table>
 
-                        <div className="btnContainer">
-                            <button type="button" className="btn btn-warning">test</button>
-                        </div>
-
                     </Col>
                 </Row>
             </div>
