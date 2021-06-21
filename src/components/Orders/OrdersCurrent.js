@@ -6,40 +6,26 @@ import {statusEnum} from './statusEnum'
 import "./Order.sass"
 
 const Orders = () => {
-    const [order, setOrders] = useState([]);
+    const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        const fetchOrders = async () => {
-            const result = await axios("http://localhost:9191/orders/all");
-            return result.data;
-        };
-        fetchOrders().then((r) => setOrders(r));
-
-        setInterval(() => {
-            const fetchOrders = async () => {
-                const result = await axios("http://localhost:9191/orders/all");
-                return result.data;
-            };
-            fetchOrders().then((r) => setOrders(r));
-        }, 10000);
+       refreshPage(setOrders)
     }, []);
 
-    const OnDone = (orderID) => {
-        for (let i = order.length - 1; i >= 0; i--) {
-            if (order[i].orderId === orderID) {
-                order[i].orderStatus = statusEnum.Done.name;
-                axios
-                    .put(
-                        "http://localhost:9191/orders/update/" + order[i].orderId,
-                        order[i],
-                        { headers: { "Content-Type": "application/json" } }
-                    )
-                    .then(r => console.log(r.status))
-                    .catch(e => console.log(e));
-            }
-        }
-        setOrders([...order]);
+    const onStatusUpdate = (id) => {
+        let order = orders.find(x => x.orderId === id)
 
+        if (order.orderStatus === statusEnum.ToDo.name){
+            order.orderStatus = statusEnum.InProgress.name;
+        }
+        else if (order.orderStatus === statusEnum.InProgress.name) {
+            order.orderStatus = statusEnum.Done.name;
+        }
+
+        setOrders([...orders])
+        axios.put("http://localhost:9191/orders/update/" + order.orderId, order)
+            .then(r => console.log(r.status))
+            .catch(e => console.log(e));
     };
 
     return (
@@ -47,20 +33,19 @@ const Orders = () => {
             <Container>
                 <Row>
                     <CardDeck>
-                        {order
+                        {orders
                             .filter((x) => {
                                 return x.orderStatus !== statusEnum.Done.name;
                             })
-                            .map((orders, id) => (
+                            .map((order, index) => (
                                 <OrderItem
-                                    listId={id}
-                                    id={orders.orderId}
-                                    title={orders.name}
-                                    tableNum={orders.tableId}
-                                    image={orders.image}
-                                    orderTime={orders.dateTime}
-                                    orderstatus={orders.orderStatus}
-                                    onDoneClick={() => OnDone(orders.orderId)}
+                                    key = {order.orderId}
+                                    index={index}
+                                    orderId={order.orderId}
+                                    tableNum={order.tableId}
+                                    orderTime={order.dateTime}
+                                    orderStatus={order.orderStatus}
+                                    onStatusUpdate={onStatusUpdate}
                                 />
                             ))}
                     </CardDeck>
@@ -71,3 +56,21 @@ const Orders = () => {
 };
 
 export default Orders;
+
+
+
+export function refreshPage(setOrders){
+    const fetchOrders = async () => {
+        const result = await axios("http://localhost:9191/orders/all");
+        return result.data;
+    };
+    fetchOrders().then((r) => setOrders(r));
+
+    setInterval(() => {
+        const fetchOrders = async () => {
+            const result = await axios("http://localhost:9191/orders/all");
+            return result.data;
+        };
+        fetchOrders().then((r) => setOrders(r));
+    }, 10000);
+}
