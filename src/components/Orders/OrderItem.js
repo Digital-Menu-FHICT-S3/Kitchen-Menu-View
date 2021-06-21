@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
 import axios from 'axios';
+import { statusEnum } from './statusEnum';
 
-const OrderItem = ({ id, title, tableNum, image, orderTime, onDoneClick }) => {
+const OrderItem = ({ id, title, tableNum, image, orderTime, orderstatus, onDoneClick }) => {
 
   const [DishesInOrder, setDishesInOrder] = useState([])
   const [Dishes, setDishes] = useState([])
@@ -85,9 +86,14 @@ const OrderItem = ({ id, title, tableNum, image, orderTime, onDoneClick }) => {
         </Card.Body>
         <Card.Footer>
           <small className="text-muted">{timeAgo(orderTime)}</small>
-          <Button className="float-right" onClick={onDoneClick}>
-            Done
-          </Button>
+          {(() => {
+            if (orderstatus != "Done") {
+              return (<Button className="float-right" onClick={onDoneClick}>
+                Done
+              </Button>)
+            };
+          }
+          )()}
         </Card.Footer>
       </Card>
     </div>

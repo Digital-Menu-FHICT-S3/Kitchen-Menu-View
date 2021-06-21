@@ -97,6 +97,7 @@ const Orders = () => {
                   tableNum={orders.tableId}
                   image={orders.image}
                   orderTime={orders.dateTime}
+                  orderstatus={orders.orderStatus}
                   onDoneClick={() => OnDone(orders.id)}
                 />
               ))}
