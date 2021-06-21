@@ -1,9 +1,11 @@
 import "./Header.sass";
-import {Nav, Navbar} from "react-bootstrap";
-import {MdDone} from "react-icons/md";
-import {GrInProgress} from "react-icons/gr";
-import {GiAppleSeeds} from "react-icons/gi";
-import {Link} from "react-router-dom";
+import { Nav, Navbar } from "react-bootstrap";
+import { MdDone } from "react-icons/md";
+import { GrInProgress } from "react-icons/gr";
+import { GiKnifeFork, GiAppleSeeds } from "react-icons/gi";
+import { BsDashSquare } from "react-icons/bs";
+
+import { Link } from "react-router-dom";
 import React from "react";
 import logo from "../../assets/m_sticky_header.png"
 

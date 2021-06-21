@@ -5,8 +5,8 @@ import "./Stock.css";
 import axios from "axios";
 
 const Stock = () => {
-    const [quantity, setQuantity] = useState([]);
     const [ingredients, setIngredients] = useState([]);
+
 
     useEffect(() => {
         axios.get('http://localhost:9191/ingredient/all')
@@ -20,16 +20,30 @@ const Stock = () => {
     }, [])
 
 
-    const test = () => {
-        console.log(ingredients)
+
+
+    const updateAmount = async (id, index) => {
+        
+        await axios.put(`http://localhost:9191/ingredient/update/${id}`, {
+                ingredientId: id,
+                name: document.getElementsByClassName("name")[index].value,
+                amount: document.getElementsByClassName("amount")[index].value
+                
+            })
+            .then(res => {
+                console.log(res);
+            })
+            .catch(error => {
+                console.log();
+            }).then(window.location.reload(false));;
     }
+
 
     return (
         <div>
             <div className="container">
                 <Row>
                     <Col>
-
                         <table className="table">
                             <thead className="thead-dark">
                             <tr>
@@ -40,30 +54,33 @@ const Stock = () => {
                             </tr>
                             </thead>
                             <tbody>
-                                {ingredients.map(ingredient => (
+
+                                
+                                {ingredients.map((ingredient, index) => (
                                     <tr>
                                         <th scope="row">{ingredient.ingredientId}</th>
-                                        <td>{ingredient.name}</td>
+                                        <td>
+                                            <label>{ingredient.name}</label><br />
+                                        <input type="text" name="name" className="form-control, name" placeholder="Enter name" />
+                                        </td>
+                                            
                                         <td>
                                             <div className="form-group col-md-2">
-                                                <input type="number" className="form-control" id="inputZip" value={ingredient.amount} />
+                                                <label>{ingredient.amount}</label>
+                                                <input type="text" name="amount" className="form-control, amount" placeholder="Enter amount" />
+
                                             </div>
                                         </td>
                                         <td>
                                             <div className="cBtnContainer">
-                                                <button type="button" className="btn btn-warning">Update</button>
+                                                <button type="button" className="btn btn-warning" id={index} onClick={()=>updateAmount(ingredient.ingredientId, index)}>edit</button>
                                             </div>
-                                            <button type="button" className="btn btn-danger">Delete</button>
                                         </td>
                                     </tr>
                                 ))}
 
                             </tbody>
                         </table>
-
-                        <div className="btnContainer">
-                            <button type="button" className="btn btn-warning" onClick={test}>test</button>
-                        </div>
 
                     </Col>
                 </Row>
