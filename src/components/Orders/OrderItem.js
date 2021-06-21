@@ -4,10 +4,12 @@ import axios from 'axios';
 import {statusEnum} from './statusEnum';
 import "./OrderItem.sass"
 
-const OrderItem = ({listId, id, title, tableNum, image, orderTime, orderstatus, onDoneClick}) => {
+const OrderItem = ({listId, id, tableNum, orderTime, orderstatus, onDoneClick}) => {
 
     const [DishesInOrder, setDishesInOrder] = useState([])
     const [Dishes, setDishes] = useState([])
+
+    console.log(orderstatus)
 
     useEffect(() => {
         const fetchOrderLines = async () => {
@@ -70,13 +72,13 @@ const OrderItem = ({listId, id, title, tableNum, image, orderTime, orderstatus, 
 
     return (
         <Card className="card-wrapper">
-            <Card.Header id="card-header">
+            <Card.Header id="card-header" style={{backgroundColor: getBackgroundColor(orderstatus)}}>
                 <div className="status-bar" style={{marginBottom: "10px"}}>
                     <div id="list-id">
                         #{listId}
                     </div>
                     <div id="status">
-                        Preparing
+                        {getStatus(orderstatus)}
                     </div>
                 </div>
                 <div className="status-bar">
@@ -89,37 +91,55 @@ const OrderItem = ({listId, id, title, tableNum, image, orderTime, orderstatus, 
                 </div>
             </Card.Header>
             <div id="card-body">
-                {DishesInOrder
-                    .map((dish, id) => (
-                            <div className="dish-line">
-                                <div className="dish-line-content">
-                                    <div className="dish-line-amount">
-                                        {dish.amount}
-                                    </div>
-                                    <div className="dish-line-name">
-                                        {getDishName(dish.dishId)}
-
-                                    </div>
-                                </div>
-
+                {DishesInOrder.map((dish) => (
+                    <div className="dish-line">
+                        <div className="dish-line-content">
+                            <div className="dish-line-amount">
+                                {dish.amount}
                             </div>
-
-                        )
-                    )}
+                            <div className="dish-line-name">
+                                {getDishName(dish.dishId)}
+                            </div>
+                        </div>
+                    </div>)
+                )}
             </div>
-            <Card.Footer id="card-footer">
-                {(() => {
-                        if (orderstatus != "Done") {
-                            return (
+            {(() => {
+                    if (orderstatus != "Done") {
+                        return (
+                            <Card.Footer id="card-footer">
                                 <button id="status-button" onClick={onDoneClick}>
                                     Done
-                                </button>)
-                        }
+                                </button>
+                            </Card.Footer>
+                        )
                     }
-                )()}
-            </Card.Footer>
+                }
+            )()}
+
         </Card>
     );
 };
 
 export default OrderItem;
+
+
+function getBackgroundColor(status) {
+    if (status === "ToDo") {
+        return "#fbc379"; //#e1e5eb
+    } else if (status === "InProgress") {
+        return "#fbc379";
+    } else if (status === "Done") {
+        return "#89f397";
+    }
+}
+
+function getStatus(status) {
+    if (status === "ToDo") {
+        return "Preparing"; //New
+    } else if (status === "InProgress") {
+        return "Preparing";
+    } else if (status === "Done") {
+        return "Done";
+    }
+}

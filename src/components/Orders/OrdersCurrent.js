@@ -32,13 +32,14 @@ const Orders = () => {
                     .put(
                         "http://localhost:9191/orders/update/" + order[i].orderId,
                         order[i],
-                        {headers: {"Content-Type": "application/json"}}
+                        { headers: { "Content-Type": "application/json" } }
                     )
                     .then(r => console.log(r.status))
                     .catch(e => console.log(e));
             }
         }
         setOrders([...order]);
+
     };
 
     return (
