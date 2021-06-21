@@ -2,8 +2,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import OrdersCurrent from "../Orders/OrdersCurrent";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ManageCategories from "../ManageCategories/ManageCategories";
-import ManageIngredients from "../ManageIngredients/ManageIngredients";
 import React from "react";
 import OrdersDone from "../Orders/OrdersDone";
 import Stock from "../Stock/Stock";
@@ -17,16 +15,6 @@ function App() {
           <Route exact path="/">
             <Layout title="Current">
               <OrdersCurrent />
-            </Layout>
-          </Route>
-          <Route exact path="/managecategories">
-            <Layout title="Manage Categories">
-              <ManageCategories />
-            </Layout>
-          </Route>
-          <Route exact path="/manageingredients">
-            <Layout title="Manage Ingredients">
-              <ManageIngredients />
             </Layout>
           </Route>
           <Route exact path="/OrdersCurrent">
