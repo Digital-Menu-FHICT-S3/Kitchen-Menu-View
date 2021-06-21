@@ -3,6 +3,7 @@ import { CardDeck, Container, Row } from "react-bootstrap";
 import OrderItem from "./OrderItem";
 import axios from "axios";
 import { statusEnum } from './statusEnum'
+import "./Order.sass"
 
 const Orders = () => {
   const [order, setOrders] = useState([]);
@@ -41,7 +42,7 @@ const Orders = () => {
   };
 
   return (
-    <div>
+    <div className="page-wrapper">
       <Container>
         <Row>
           <CardDeck>
