@@ -30,8 +30,8 @@ const Stock = () => {
                 amount: document.getElementsByClassName("amount")[index].value
                 
             })
-            .then(response => {
-                console.log(response);
+            .then(res => {
+                console.log(res);
             })
             .catch(error => {
                 console.log();
