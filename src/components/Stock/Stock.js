@@ -30,8 +30,8 @@ const Stock = () => {
                 amount: document.getElementsByClassName("amount")[index].value
                 
             })
-            .then(response => {
-                console.log(response);
+            .then(res => {
+                console.log(res);
             })
             .catch(error => {
                 console.log();
@@ -81,10 +81,6 @@ const Stock = () => {
 
                             </tbody>
                         </table>
-
-                        <div className="btnContainer">
-                            <button type="button" className="btn btn-warning">test</button>
-                        </div>
 
                     </Col>
                 </Row>
