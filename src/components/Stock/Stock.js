@@ -47,7 +47,6 @@ const Stock = () => {
                         <table className="table">
                             <thead className="thead-dark">
                             <tr>
-                                <th scope="col">ID</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Manage</th>
@@ -58,7 +57,6 @@ const Stock = () => {
 
                                 {ingredients.map((ingredient, index) => (
                                     <tr>
-                                        <th scope="row">{ingredient.ingredientId}</th>
                                         <td>
                                             <label>{ingredient.name}</label><br />
                                         <input type="text" name="name" className="form-control, name" placeholder="Enter name" />
