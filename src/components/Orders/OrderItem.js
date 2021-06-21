@@ -1,103 +1,125 @@
-import React, { useState, useEffect } from "react";
-import { Card, Button } from "react-bootstrap";
+import React, {useState, useEffect} from "react";
+import {Card, Button} from "react-bootstrap";
 import axios from 'axios';
-import { statusEnum } from './statusEnum';
+import {statusEnum} from './statusEnum';
+import "./OrderItem.sass"
 
-const OrderItem = ({ id, title, tableNum, image, orderTime, orderstatus, onDoneClick }) => {
+const OrderItem = ({listId, id, title, tableNum, image, orderTime, orderstatus, onDoneClick}) => {
 
-  const [DishesInOrder, setDishesInOrder] = useState([])
-  const [Dishes, setDishes] = useState([])
+    const [DishesInOrder, setDishesInOrder] = useState([])
+    const [Dishes, setDishes] = useState([])
 
-  useEffect(() => {
-    const fetchOrderLines = async () => {
-      const result = await axios("http://localhost:9191/orders/orderlines/fromorder/" + id);
-      return result.data;
-    };
-    fetchOrderLines().then((r) => setDishesInOrder(r));
-  }, []);
+    useEffect(() => {
+        const fetchOrderLines = async () => {
+            const result = await axios("http://localhost:9191/orders/orderlines/fromorder/" + id);
+            return result.data;
+        };
+        fetchOrderLines().then((r) => setDishesInOrder(r));
+    }, []);
 
-  useEffect(() => {
-    const fetchDishes = async () => {
-      const result = await axios("http://localhost:9191/menu/dishes/all");
-      return result.data;
-    };
-    fetchDishes().then((r) => setDishes(r));
-  }, [])
+    useEffect(() => {
+        const fetchDishes = async () => {
+            const result = await axios("http://localhost:9191/menu/dishes/all");
+            return result.data;
+        };
+        fetchDishes().then((r) => setDishes(r));
+    }, [])
 
-  const getDishName = (id) => {
-    for (var dish of Dishes) {
-      if (dish.dishId === id) {
-        return dish.name;
-      }
+    const getDishName = (id) => {
+        return Dishes.find(x => x.dishId === id)?.name
     }
-  }
 
-  const timeAgo = (prevDate) => {
+    const timeAgo = (prevDate) => {
 
-    let previousDate = new Date(prevDate)
-    let offset = new Date().getTimezoneOffset(); //returns 120 for GMT+1 + SummerTime
-    previousDate.setMinutes(previousDate.getMinutes() - offset)
+        let previousDate = new Date(prevDate)
+        let offset = new Date().getTimezoneOffset(); //returns 120 for GMT+1 + SummerTime
+        previousDate.setMinutes(previousDate.getMinutes() - offset)
 
-    const diff = Number(new Date()) - new Date(previousDate);
+        const diff = Number(new Date()) - new Date(previousDate);
 
-    const minute = 60 * 1000;
-    const hour = minute * 60;
-    const day = hour * 24;
-    const month = day * 30;
-    const year = day * 365;
-    switch (true) {
-      case diff < 0:
-        return "Time Unavailible"
-      case diff < minute:
-        const seconds = Math.round(diff / 1000);
-        return `${seconds} ${seconds > 1 ? 'seconds' : 'second'} ago`
-      case diff < hour:
-        const minutes = Math.round(diff / minute);
-        return `${minutes} ${minutes > 1 ? 'minutes' : 'minute'} ago`;
-      case diff < day:
-        const hours = Math.round(diff / hour);
-        return `${hours} ${hours > 1 ? 'hours' : 'hour'} ago`;
-      case diff < month:
-        const days = Math.round(diff / day);
-        return `${days} ${days > 1 ? 'days' : 'day'} ago`;
-      case diff < year:
-        const months = Math.round(diff / month)
-        return `${months} ${months > 1 ? 'months' : 'month'} ago`;
-      case diff > year:
-        const years = Math.round(diff / year);
-        return `${years} ${years > 1 ? 'years' : 'year'} ago`;
-      default:
-        return "";
-    }
-  };
+        const minute = 60 * 1000;
+        const hour = minute * 60;
+        const day = hour * 24;
+        const month = day * 30;
+        const year = day * 365;
+        switch (true) {
+            case diff < 0:
+                return "Time Unavailible"
+            case diff < minute:
+                const seconds = Math.round(diff / 1000);
+                return `${seconds} ${seconds > 1 ? 'seconds' : 'second'} ago`
+            case diff < hour:
+                const minutes = Math.round(diff / minute);
+                return `${minutes} ${minutes > 1 ? 'minutes' : 'minute'} ago`;
+            case diff < day:
+                const hours = Math.round(diff / hour);
+                return `${hours} ${hours > 1 ? 'hours' : 'hour'} ago`;
+            case diff < month:
+                const days = Math.round(diff / day);
+                return `${days} ${days > 1 ? 'days' : 'day'} ago`;
+            case diff < year:
+                const months = Math.round(diff / month)
+                return `${months} ${months > 1 ? 'months' : 'month'} ago`;
+            case diff > year:
+                const years = Math.round(diff / year);
+                return `${years} ${years > 1 ? 'years' : 'year'} ago`;
+            default:
+                return "";
+        }
+    };
 
-  return (
-    <div>
-      <Card>
-        <Card.Img variant="top" src={image} />
-        <Card.Body>
-          <Card.Title>{title}</Card.Title>
-          <Card.Text>Tafel {+" " + tableNum}</Card.Text>
-          {DishesInOrder
-            .map((dish) => (
-              <Card.Text>{`${dish.amount}x ${getDishName(dish.dishId)}`}</Card.Text>
-            )
-            )}
-        </Card.Body>
-        <Card.Footer>
-          <small className="text-muted">{timeAgo(orderTime)}</small>
-          {(() => {
-            if (orderstatus != "Done") {
-              return (<Button className="float-right" onClick={onDoneClick}>
-                Done
-              </Button>)
-            };
-          }
-          )()}
-        </Card.Footer>
-      </Card>
-    </div>
-  );
+    return (
+        <Card className="card-wrapper">
+            <Card.Header id="card-header">
+                <div className="status-bar" style={{marginBottom: "10px"}}>
+                    <div id="list-id">
+                        #{listId}
+                    </div>
+                    <div id="status">
+                        Preparing
+                    </div>
+                </div>
+                <div className="status-bar">
+                    <div id="tableNum">
+                        Table {+tableNum}
+                    </div>
+                    <div id="time">
+                        {timeAgo(orderTime)}
+                    </div>
+                </div>
+            </Card.Header>
+            <div id="card-body">
+                {DishesInOrder
+                    .map((dish, id) => (
+                            <div className="dish-line">
+                                <div className="dish-line-content">
+                                    <div className="dish-line-amount">
+                                        {dish.amount}
+                                    </div>
+                                    <div className="dish-line-name">
+                                        {getDishName(dish.dishId)}
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        )
+                    )}
+            </div>
+            <Card.Footer id="card-footer">
+                {(() => {
+                        if (orderstatus != "Done") {
+                            return (
+                                <button id="status-button" onClick={onDoneClick}>
+                                    Done
+                                </button>)
+                        }
+                    }
+                )()}
+            </Card.Footer>
+        </Card>
+    );
 };
 
 export default OrderItem;
