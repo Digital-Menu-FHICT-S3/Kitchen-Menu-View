@@ -55,7 +55,7 @@ const OrderItem = ({index, orderId, tableNum, orderTime, orderStatus, onStatusUp
                 return `${hours} ${hours > 1 ? 'hours' : 'hour'}`;
             case diff < month:
                 const days = Math.round(diff / day);
-                return `${days} ${days > 1 ? 'days' : 'day'}s`;
+                return `${days} ${days > 1 ? 'days' : 'day'}`;
             case diff < year:
                 const months = Math.round(diff / month)
                 return `${months} ${months > 1 ? 'months' : 'month'}`;
