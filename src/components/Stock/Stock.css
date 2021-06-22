@@ -21,3 +21,9 @@
     font-size: 16px;
     padding: 10px 20px;
 }
+
+.editUpdate:hover {
+    background: #ffa500cc;
+    color: white;
+    border: none;
+}
