@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import Row from "react-bootstrap/row";
 import Col from "react-bootstrap/col";
 import "./Stock.css";
@@ -6,7 +6,6 @@ import axios from "axios";
 
 const Stock = () => {
     const [ingredients, setIngredients] = useState([]);
-
 
     useEffect(() => {
         axios.get('http://localhost:9191/ingredient/all')
@@ -20,24 +19,32 @@ const Stock = () => {
     }, [])
 
 
-
-
     const updateAmount = async (id, index) => {
 
-        await axios.put(`http://localhost:9191/ingredient/update/${id}`, {
-                ingredientId: id,
-                name: document.getElementsByClassName("name")[index].value,
-                amount: document.getElementsByClassName("amount")[index].value
+        let name = document.getElementsByClassName("name")[index].value
+        let amount = document.getElementsByClassName("amount")[index].value
 
-            })
+        if (amount == null || amount < 0) {
+            amount = 0
+        }
+        if (name == null || name === "") {
+            name = ingredients[index].name
+        }
+
+        await axios.put(`http://localhost:9191/ingredient/update/${id}`, {
+            ingredientId: id,
+            name: name,
+            amount: amount
+
+        })
             .then(res => {
                 console.log(res);
             })
             .catch(error => {
                 console.log();
-            }).then(window.location.reload(false));;
+            }).then(window.location.reload(false));
+        ;
     }
-
 
     return (
         <div className="stock-wrapper">
@@ -55,27 +62,31 @@ const Stock = () => {
                             <tbody>
 
 
-                                {ingredients.map((ingredient, index) => (
-                                    <tr>
-                                        <td>
-                                            <label>{ingredient.name}</label><br />
-                                        <input type="text" name="name" className="form-control, name" placeholder="Enter name" />
-                                        </td>
+                            {ingredients.map((ingredient, index) => (
+                                <tr>
+                                    <td>
+                                        <label>{ingredient.name}</label><br/>
+                                        <input type="text" name="name" className="form-control, name"
+                                               placeholder="Enter name" defaultValue={ingredient.name} required/>
+                                    </td>
 
-                                        <td>
-                                            <div className="form-group col-md-2">
-                                                <label>{ingredient.amount}</label>
-                                                <input type="text" name="amount" className="form-control, amount" placeholder="Enter amount" />
+                                    <td>
+                                        <div className="form-group col-md-2">
+                                            <label>{ingredient.amount}</label>
+                                            <input type="text" name="amount" className="form-control, amount"
+                                                   placeholder="Enter amount" defaultValue={ingredient.amount} required/>
 
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="cBtnContainer">
-                                                <button type="button" className="editUpdate" id={index} onClick={()=>updateAmount(ingredient.ingredientId, index)}>Edit</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className="cBtnContainer">
+                                            <button type="button" className="btn btn-warning" id={index}
+                                                    onClick={() => updateAmount(ingredient.ingredientId, index)}>Edit
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
 
                             </tbody>
                         </table>
