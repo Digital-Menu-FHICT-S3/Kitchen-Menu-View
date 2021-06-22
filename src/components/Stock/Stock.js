@@ -65,16 +65,16 @@ const Stock = () => {
                             {ingredients.map((ingredient, index) => (
                                 <tr>
                                     <td>
-                                        <label>{ingredient.name}</label><br/>
+                                        <label style={{fontWeight: "bold"}}>{ingredient.name}</label><br/>
                                         <input type="text" name="name" className="form-control, name"
-                                               placeholder="Enter name" defaultValue={ingredient.name} required/>
+                                               placeholder="Enter name" defaultValue={ingredient.name}/>
                                     </td>
 
                                     <td>
                                         <div className="form-group col-md-2">
-                                            <label>{ingredient.amount}</label>
+                                            <label style={{fontWeight: "bold"}}>{ingredient.amount}</label>
                                             <input type="text" name="amount" className="form-control, amount"
-                                                   placeholder="Enter amount" defaultValue={ingredient.amount} required/>
+                                                   placeholder="Enter amount" defaultValue={ingredient.amount}/>
 
                                         </div>
                                     </td>
