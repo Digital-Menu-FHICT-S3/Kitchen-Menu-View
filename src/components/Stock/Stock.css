@@ -14,7 +14,7 @@
 
 .editUpdate {
     text-align: center;
-    background-color: orange;
+    background-color: #444444;
     color: #eeeeee;
     border-radius: 5px !important;
     border: none;
@@ -23,7 +23,7 @@
 }
 
 .editUpdate:hover {
-    background: #ffa500cc;
+    background-color: #2d2d2d;
     color: white;
     border: none;
 }
