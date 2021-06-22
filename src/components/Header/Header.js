@@ -24,11 +24,11 @@ const Header = ({headerTitle}) => {
 
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                        <Link className="link" to="/finished-orders">
-                            <MdDone size={30}/>
-                        </Link>
                         <Link className="link" to="/current-orders">
                             <GrInProgress size={30}/>
+                        </Link>
+                        <Link className="link" to="/finished-orders">
+                            <MdDone size={30}/>
                         </Link>
                         <Link className="link" to="/stock">
                             <GiAppleSeeds size={30}/>
