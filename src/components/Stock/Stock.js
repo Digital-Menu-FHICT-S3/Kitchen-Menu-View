@@ -71,7 +71,7 @@ const Stock = () => {
                                         </td>
                                         <td>
                                             <div className="cBtnContainer">
-                                                <button type="button" className="btn btn-warning" id={index} onClick={()=>updateAmount(ingredient.ingredientId, index)}>Edit</button>
+                                                <button type="button" className="editUpdate" id={index} onClick={()=>updateAmount(ingredient.ingredientId, index)}>Edit</button>
                                             </div>
                                         </td>
                                     </tr>
