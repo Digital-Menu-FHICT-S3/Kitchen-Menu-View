@@ -23,12 +23,12 @@ const Stock = () => {
 
 
     const updateAmount = async (id, index) => {
-        
+
         await axios.put(`http://localhost:9191/ingredient/update/${id}`, {
                 ingredientId: id,
                 name: document.getElementsByClassName("name")[index].value,
                 amount: document.getElementsByClassName("amount")[index].value
-                
+
             })
             .then(res => {
                 console.log(res);
@@ -40,30 +40,28 @@ const Stock = () => {
 
 
     return (
-        <div>
+        <div className="stock-wrapper">
             <div className="container">
                 <Row>
                     <Col>
                         <table className="table">
                             <thead className="thead-dark">
                             <tr>
-                                <th scope="col">ID</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Quantity</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Manage</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                                
+
                                 {ingredients.map((ingredient, index) => (
                                     <tr>
-                                        <th scope="row">{ingredient.ingredientId}</th>
                                         <td>
                                             <label>{ingredient.name}</label><br />
                                         <input type="text" name="name" className="form-control, name" placeholder="Enter name" />
                                         </td>
-                                            
+
                                         <td>
                                             <div className="form-group col-md-2">
                                                 <label>{ingredient.amount}</label>
@@ -73,7 +71,7 @@ const Stock = () => {
                                         </td>
                                         <td>
                                             <div className="cBtnContainer">
-                                                <button type="button" className="btn btn-warning" id={index} onClick={()=>updateAmount(ingredient.ingredientId, index)}>edit</button>
+                                                <button type="button" className="btn btn-warning" id={index} onClick={()=>updateAmount(ingredient.ingredientId, index)}>Edit</button>
                                             </div>
                                         </td>
                                     </tr>
